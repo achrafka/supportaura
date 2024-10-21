@@ -4,38 +4,38 @@ SupportAura is a modern helpdesk web application built with Python Django as the
 
 ## Features
 
-- **AI Chatbot for Customer Support**: 
+- **AI Chatbot for Customer Support**:
   - Interactive chatbot that assists customers with their queries.
   - Learns from interactions to provide personalized responses.
 
-- **Sentiment Analysis**: 
+- **Sentiment Analysis**:
   - Analyzes customer feedback and interactions to gauge sentiment.
   - Provides insights into customer satisfaction and engagement.
 
-- **AI-Powered Ticketing System**: 
+- **AI-Powered Ticketing System**:
   - Automatically categorizes and prioritizes tickets based on content and urgency.
   - Uses AI for routing tickets to the appropriate support agents.
 
-- **Admin Dashboard**: 
+- **Admin Dashboard**:
   - Real-time monitoring of ticket status, customer sentiment, and chatbot performance.
   - Visual analytics to track support metrics and trends.
 
-- **Email Notifications**: 
+- **Email Notifications**:
   - Sends alerts for new tickets and status changes.
   - Notifies users about critical tickets needing attention.
 
 ## Tech Stack
 
-- **Backend**: 
+- **Backend**:
   - Python (Django)
   - Django REST Framework (DRF)
   - PostgreSQL / MySQL
 
-- **Frontend**: 
+- **Frontend**:
   - React
   - Redux (for state management)
 
-- **AI Tools**: 
+- **AI Tools**:
   - OpenAI API / Dialogflow for chatbot functionalities.
   - NLTK / Hugging Face for sentiment analysis.
 

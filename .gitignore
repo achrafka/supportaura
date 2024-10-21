@@ -1,0 +1,50 @@
+### VisualStudioCode ###
+*.code-workspace
+.vscode/*
+vscode/*
+
+### Test
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+htmlcov/*
+static_files
+
+
+### envirements
+.env
+env/
+venv/
+
+
+# Byte-compiled / optimized / DLL files
+*__pycache__/*
+__pycache__
+*.py[cod]
+*$py.class
+
+### Son folder
+son/*
+sounds/*
+beep.wav
+/sounds
+content_*.wav
+color_music
+Mevo.wav
+
+#other files and folders
+structure.txt
+
+#ods files
+*.ods
