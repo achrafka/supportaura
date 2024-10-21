@@ -48,3 +48,5 @@ structure.txt
 
 #ods files
 *.ods
+
+create entity_for_the first time.sql

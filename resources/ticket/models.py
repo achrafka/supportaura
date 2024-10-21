@@ -1,9 +1,10 @@
 # tickets/models.py
 from django.db import models
-from resources.users.models import CustomUser
+from resources.user.models import User
+from resources.entity.models import EntityRelatedModel
 
 
-class Ticket(models.Model):
+class Ticket(EntityRelatedModel):
     STATUS_CHOICES = [
         ("open", "Open"),
         ("in_progress", "In Progress"),
@@ -34,18 +35,16 @@ class Ticket(models.Model):
     sentiment = models.CharField(
         max_length=10, choices=SENTIMENT_CHOICES, blank=True, null=True
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     viewed = models.BooleanField(default=False)
     assigned_to = models.ForeignKey(
-        CustomUser,
+        User,
         on_delete=models.SET_NULL,
         related_name="assigned_tickets",
         null=True,
         blank=True,
     )
     created_by = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="created_tickets"
+        User, on_delete=models.CASCADE, related_name="created_tickets"
     )
     comments = models.JSONField(blank=True, null=True)
     tags = models.JSONField(blank=True, null=True)

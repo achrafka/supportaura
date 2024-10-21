@@ -1,6 +1,6 @@
 # resources/users/serializers.py
 from rest_framework import serializers
-from django.contrib.auth import authenticate
+from .models import User
 
 
 class LoginSerializer(serializers.Serializer):
@@ -10,12 +10,10 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs.get('email')
         password = attrs.get('password')
+        user = User.objects.filter(email=email).first()
 
-        user = authenticate(request=self.context.get('request'),
-                            email=email, password=password)
-
-        if user is None:
-            raise serializers.ValidationError('Invalid email or password.')
+        if user is None or not user.check_password(password):
+            raise serializers.ValidationError('Invalid email or password')
 
         attrs['user'] = user
         return attrs

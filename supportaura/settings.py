@@ -32,8 +32,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_simplejwt",
-    "resources.tickets",
-    "resources.users",
+    "rest_framework_simplejwt.token_blacklist",
+    "resources.ticket",
+    "resources.user",
+    "resources.entity",
 ]
 
 MIDDLEWARE = [
@@ -44,6 +46,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_ratelimit.middleware.RatelimitMiddleware",
 ]
 
 ROOT_URLCONF = "supportaura.urls"
@@ -65,6 +68,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "supportaura.wsgi.application"
+
+# user authentication
+AUTH_USER_MODEL = "user.User"
 
 
 # Database

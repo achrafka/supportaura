@@ -2,11 +2,11 @@
 # tickets/admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import User
 
 
-class CustomUserAdmin(UserAdmin):
-    model = CustomUser
+class UserAdmin(UserAdmin):
+    model = User
     # Fields to display in admin
     list_display = ['email', 'first_name', 'last_name', 'is_staff',
                     'is_active']
@@ -17,7 +17,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name',
                                       'phone_number', 'address',
-                                      'profile_image')}),
+                                      'profile_image', 'entity')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser',
                                     'groups', 'user_permissions')}),
         ('Important Dates', {'fields': ('last_login', )}),
@@ -29,4 +29,4 @@ class CustomUserAdmin(UserAdmin):
                        'is_active')}),)
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(User, UserAdmin)

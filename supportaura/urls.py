@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from resources.users.views import LoginView, LogoutView
+from resources.user.views import LoginView, LogoutView
 
 
 urlpatterns = [

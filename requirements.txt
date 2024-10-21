@@ -3,3 +3,4 @@ Pillow
 psycopg2
 djangorestframework
 djangorestframework-simplejwt
+django_ratelimit
