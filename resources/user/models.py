@@ -2,11 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from resources.entity.models import EntityRelatedModel
 
 
-class CustomUserManager(BaseUserManager):
+class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         """Create and return a regular user with an email and password."""
+        extra_fields['entity_id'] = 1
         if not email:
             raise ValueError("The Email field must be set")
         email = self.normalize_email(email)
@@ -28,13 +30,12 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, EntityRelatedModel):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
-    date_joined = models.DateTimeField(auto_now_add=True, editable=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     profile_image = models.ImageField(
@@ -42,7 +43,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='customuser_set',
+        related_name='user_set',
         blank=True,
         help_text="The groups this user belongs to.",
         verbose_name="groups",
@@ -50,15 +51,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='customuser_permissions_set',
+        related_name='user_permissions_set',
         blank=True,
         help_text="Specific permissions for this user.",
         verbose_name="user permissions",
     )
-    USERNAME_FIELD = "first_name"
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    objects = CustomUserManager()
+    objects = UserManager()
 
     def __str__(self):
         return f"{self.first_name}_{self.last_name}"
